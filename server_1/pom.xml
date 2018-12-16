@@ -13,4 +13,12 @@
     <groupId>server_1</groupId>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>api_1</groupId>
+            <artifactId>c.c.k</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 </project>
