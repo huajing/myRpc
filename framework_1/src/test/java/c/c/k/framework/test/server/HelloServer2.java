@@ -14,13 +14,15 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 public class HelloServer2 {
     public static void main(String[] args) {
         ServerBootstrap ss = new ServerBootstrap();
-        //java.lang.IllegalStateException: group not set
+        //如果不设置，java.lang.IllegalStateException: group not set
         ss.group(new NioEventLoopGroup());
-        //java.lang.IllegalStateException: channel or channelFactory not set
+        //如果不设置，java.lang.IllegalStateException: channel or channelFactory not set
         ss.channel(NioServerSocketChannel.class);
-        //java.lang.IllegalStateException: childHandler not set
+        //如果不设置，java.lang.IllegalStateException: childHandler not set
         ss.childHandler(new HelloServerInitializer());
         try {
+            //Create a new Channel and bind it.
+            //Waits for this future until it is done, and rethrows the cause of the failure if this future failed.
             ss.bind(1234).sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
