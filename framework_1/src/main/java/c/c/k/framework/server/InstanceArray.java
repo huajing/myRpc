@@ -6,7 +6,7 @@ import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * 实例对象管理
+ * 实例对象管理，在生产一下用xml配置，或者用spring管理bean
  * @Title c.c.k.framework.server
  * @Copyright: Copyright 2018
  * @Description: java <br/>

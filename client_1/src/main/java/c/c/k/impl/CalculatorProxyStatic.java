@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
  * @Description: java <br/>
  * @Created on 2018/12/25 chenck
  */
-public class CalculatorProxy {
+public class CalculatorProxyStatic {
     private Class clazz;
 
     public void setClazz(Class clazz) {
