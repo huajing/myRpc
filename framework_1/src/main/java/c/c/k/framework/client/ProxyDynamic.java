@@ -19,6 +19,12 @@ public class ProxyDynamic {
      * @return
      */
     public static final Object getProxyInstance(final Class clazz){
+        /**
+         * newProxyInstance
+         * 第一个参数是接口的类加载器
+         * 第二个参数是接口，如果不是接口类则会报错，也就是说被代理的对象必须是要通过接口实现
+         * 第三个参数是接口调用的实现
+         */
         return Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, new InvocationHandler() {
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 //调用对象方法时返回
