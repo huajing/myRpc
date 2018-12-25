@@ -15,7 +15,7 @@ import java.net.Socket;
  * @Created on 2018/12/25 chenck
  */
 public class ClientDelegate {
-    public Object callRemote(Class interfaceClzz, Method method, Object[] objects){
+    public static final Object callRemote(Class interfaceClzz, Method method, Object[] objects){
 
         Socket socket = null;
         try {

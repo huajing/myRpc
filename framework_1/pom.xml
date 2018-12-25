@@ -12,5 +12,12 @@
     <groupId>framework_1</groupId>
     <artifactId>c.c.k</artifactId>
 
-
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/cglib/cglib -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+    </dependencies>
 </project>

@@ -6,6 +6,7 @@ import c.c.k.framework.ParamObject;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -24,24 +25,40 @@ public class Server {
             ss = new ServerSocket(Contstants.SERVER_PORT);
             System.out.println("server start...");
             while (true){
-                Socket socket = ss.accept();
-                ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+                try {
+                    Socket socket = ss.accept();
+                    ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 
-                ParamObject paramObject = (ParamObject)objectInputStream.readObject();
-                String className = paramObject.getInterfaceClazz().getName();
+                    ParamObject paramObject = (ParamObject)objectInputStream.readObject();
+                    String className = paramObject.getInterfaceClazz().getName();
 
-                Object service = InstanceArray.getInstanceArray().getService(className);
+                    Object service = InstanceArray.getInstanceArray().getService(className);
 
-                String methodName = paramObject.getMethodName();
-                Method method = paramObject.getInterfaceClazz().getMethod(methodName, paramObject.getMethodTypes());
-                Object returnObject = method.invoke(service, paramObject.getObjects());
-                paramObject.setReturnObject(returnObject);
+                    String methodName = paramObject.getMethodName();
+                    Method method = paramObject.getInterfaceClazz().getMethod(methodName, paramObject.getMethodTypes());
+                    Object returnObject = method.invoke(service, paramObject.getObjects());
+                    paramObject.setReturnObject(returnObject);
 
-                objectOutputStream.writeObject(paramObject);
-                socket.close();
+                    objectOutputStream.writeObject(paramObject);
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (SecurityException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }finally {
             if(ss != null){
