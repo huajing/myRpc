@@ -4,20 +4,36 @@ import java.io.Serializable;
 import java.lang.reflect.Method;
 
 /**
+ * 一次运程调用，要包含以下信息，server端才知道如何处理
  * @Title c.c.k
  * @Copyright: Copyright 2018
  * @Description: java <br/>
  * @Created on 2018/12/25 chenck
  */
 public class ParamObject implements Serializable{
+    /**
+     * 服务器端的实现类
+     */
     private Class interfaceClazz;
 
+    /**
+     * 实现类的方法名
+     */
     private String methodName;
 
+    /**
+     * 实现类的参数类型是什么
+     */
     private Class[] methodTypes;
 
+    /**
+     * 实现类的参数值
+     */
     private Object[] objects;
 
+    /**
+     * 返回值
+     */
     private Object returnObject;
 
     public Class getInterfaceClazz() {

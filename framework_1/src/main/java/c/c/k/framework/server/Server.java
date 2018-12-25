@@ -33,7 +33,8 @@ public class Server {
 
                 Object service = InstanceArray.getInstanceArray().getService(className);
 
-                Method method = paramObject.getClass().getMethod(paramObject.getMethodName(), paramObject.getMethodTypes());
+                String methodName = paramObject.getMethodName();
+                Method method = paramObject.getInterfaceClazz().getMethod(methodName, paramObject.getMethodTypes());
                 Object returnObject = method.invoke(service, paramObject.getObjects());
                 paramObject.setReturnObject(returnObject);
 

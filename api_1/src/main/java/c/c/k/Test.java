@@ -1,6 +1,8 @@
 package c.c.k;
 
 import javax.swing.*;
+import java.io.Serializable;
+import java.lang.reflect.Method;
 
 /**
  * @Title c.c.k
@@ -10,7 +12,8 @@ import javax.swing.*;
  */
 public class Test {
     public static void main(String[] args) {
-        System.out.println(ICalculator.class.getSimpleName());
+//        System.out.println(ICalculator.class.getSimpleName());
 
+        System.out.println(Method.class instanceof Serializable);
     }
 }

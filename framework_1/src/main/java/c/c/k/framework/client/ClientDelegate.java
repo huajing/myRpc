@@ -22,9 +22,10 @@ public class ClientDelegate {
 
             //构造参数
             ParamObject paramObject = new ParamObject();
-            paramObject.setMethodTypes(method.getParameterTypes());
             paramObject.setInterfaceClazz(interfaceClzz);
             paramObject.setObjects(objects);
+            paramObject.setMethodName(method.getName());
+            paramObject.setMethodTypes(method.getParameterTypes());
 
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectOutputStream.writeObject(paramObject);
