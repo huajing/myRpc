@@ -8,16 +8,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>api_1</groupId>
-    <artifactId>c.c.k</artifactId>
-    <packaging>jar</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>framework_1</groupId>
-            <artifactId>c.c.k</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
+    <groupId>framework_1</groupId>
+    <artifactId>c.c.k</artifactId>
+
 
 </project>
