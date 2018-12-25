@@ -1,6 +1,6 @@
 package c.c.k.framework.client;
 
-import net.sf.cglib.proxy.Callback;
+import c.c.k.framework.client.bio.ClientDelegate;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;

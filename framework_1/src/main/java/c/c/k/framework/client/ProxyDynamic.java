@@ -1,5 +1,7 @@
 package c.c.k.framework.client;
 
+import c.c.k.framework.client.bio.ClientDelegate;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;

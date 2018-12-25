@@ -1,0 +1,44 @@
+import c.c.k.CalculatorImpl;
+import c.c.k.ICalculator;
+import c.c.k.framework.server.InstanceArray;
+import c.c.k.framework.server.bio.ServerBIO;
+import c.c.k.framework.server.netty.ServerNetty;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.IOException;
+
+/**
+ * @Title PACKAGE_NAME
+ * @Copyright: Copyright 2018
+ * @Description: java <br/>
+ * @Created on 2018/12/25 chenck
+ */
+public class ServerTest {
+
+    @Before
+    public void before(){
+        //扫描包结构，初始化service
+        InstanceArray.getInstanceArray().instances.put(ICalculator.class.getName(), new CalculatorImpl());
+    }
+
+//    @Test
+    public void testServerBIO(){
+        try {
+            new ServerBIO().start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testServerNetty(){
+        try {
+            new ServerNetty().start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}

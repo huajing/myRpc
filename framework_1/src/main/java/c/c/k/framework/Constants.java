@@ -6,6 +6,6 @@ package c.c.k.framework;
  * @Description: java <br/>
  * @Created on 2018/12/25 chenck
  */
-public class Contstants {
+public class Constants {
     public static final int SERVER_PORT = 1234;
 }

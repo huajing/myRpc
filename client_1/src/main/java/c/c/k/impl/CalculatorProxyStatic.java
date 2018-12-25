@@ -1,6 +1,6 @@
 package c.c.k.impl;
 
-import c.c.k.framework.client.ClientDelegate;
+import c.c.k.framework.client.bio.ClientDelegate;
 
 import java.lang.reflect.Method;
 

@@ -1,6 +1,6 @@
-package c.c.k.framework.client;
+package c.c.k.framework.client.bio;
 
-import c.c.k.framework.Contstants;
+import c.c.k.framework.Constants;
 import c.c.k.framework.ParamObject;
 
 import java.io.*;
@@ -19,7 +19,7 @@ public class ClientDelegate {
 
         Socket socket = null;
         try {
-            socket = new Socket("localhost", Contstants.SERVER_PORT);
+            socket = new Socket("localhost", Constants.SERVER_PORT);
 
             //构造参数
             ParamObject paramObject = new ParamObject();

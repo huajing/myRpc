@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.Method;
 
 /**
- * 一次运程调用，要包含以下信息，server端才知道如何处理
+ * 一次远程调用，要包含以下信息，server端才知道如何处理
  * @Title c.c.k
  * @Copyright: Copyright 2018
  * @Description: java <br/>
