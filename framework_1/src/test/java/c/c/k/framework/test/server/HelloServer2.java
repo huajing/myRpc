@@ -1,7 +1,10 @@
 package c.c.k.framework.test.server;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
@@ -19,11 +22,19 @@ public class HelloServer2 {
         //如果不设置，java.lang.IllegalStateException: channel or channelFactory not set
         ss.channel(NioServerSocketChannel.class);
         //如果不设置，java.lang.IllegalStateException: childHandler not set
-        ss.childHandler(new HelloServerInitializer());
+        ss.childHandler(new ChannelInitializer<SocketChannel>() {
+            @Override
+            protected void initChannel(SocketChannel socketChannel) throws Exception {
+                socketChannel.pipeline().addLast(new HelloServerHandler());
+            }
+        });
+
         try {
             //Create a new Channel and bind it.
             //Waits for this future until it is done, and rethrows the cause of the failure if this future failed.
-            ss.bind(1234).sync();
+            ChannelFuture f = ss.bind(1234).sync();
+
+            f.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

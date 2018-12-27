@@ -12,16 +12,12 @@ import io.netty.channel.SimpleChannelInboundHandler;
 public class HelloClientHandler extends SimpleChannelInboundHandler<String> {
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, String msg) throws Exception {
-        System.out.println("Server say : " + msg);
+        System.out.println("接收服务端的数据 : " + msg);
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        super.channelActive(ctx);
-    }
-
-    @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        super.channelInactive(ctx);
+        System.out.println("与服务器连接开始，可以向服务器写入数据");
+        //ctx.writeAndFlush("xxxx")
     }
 }

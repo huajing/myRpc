@@ -2,6 +2,7 @@ package c.c.k.framework.test.server;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.codec.FixedLengthFrameDecoder;
 
 
 /**
@@ -15,6 +16,7 @@ public class HelloServerInitializer extends ChannelInitializer<SocketChannel> {
     protected void initChannel(SocketChannel socketChannel) throws Exception {
         socketChannel.pipeline().addLast("handle", new HelloServerHandler());
         socketChannel.pipeline().addLast("handle1", new HelloServerHandler2());
+        socketChannel.pipeline().addFirst();
         System.out.println("xxx");
     }
 }
