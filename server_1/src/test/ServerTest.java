@@ -1,8 +1,8 @@
 import c.c.k.CalculatorImpl;
 import c.c.k.ICalculator;
 import c.c.k.framework.server.InstanceArray;
-import c.c.k.framework.server.bio.ServerBIO;
-import c.c.k.framework.server.netty.ServerNetty;
+import c.c.k.framework.server.ServerBIO;
+import c.c.k.framework.server.ServerNetty;
 import org.junit.Before;
 import org.junit.Test;
 

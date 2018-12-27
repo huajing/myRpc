@@ -1,8 +1,8 @@
 package c.c.k.client.test;
 
 import c.c.k.ICalculator;
-import c.c.k.framework.client.ProxyCglib;
-import c.c.k.framework.client.ProxyDynamic;
+import c.c.k.framework.proxy.ProxyCglib;
+import c.c.k.framework.proxy.ProxyDynamic;
 import c.c.k.impl.CalculatorLocalImpl;
 import c.c.k.impl.CalculatorProxyStatic;
 import org.junit.Test;

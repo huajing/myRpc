@@ -1,4 +1,4 @@
-package c.c.k.framework.test.time1;
+package c.c.k.framework.test.obj;
 
 import java.io.Serializable;
 
@@ -26,5 +26,10 @@ public class RpcObject implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "name:" + name + ",age:" + age;
     }
 }

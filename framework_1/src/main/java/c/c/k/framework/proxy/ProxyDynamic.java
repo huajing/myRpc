@@ -1,6 +1,7 @@
-package c.c.k.framework.client;
+package c.c.k.framework.proxy;
 
-import c.c.k.framework.client.bio.ClientDelegate;
+import c.c.k.framework.client.ClientBIO;
+import c.c.k.framework.client.RpcClientFactory;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -30,7 +31,7 @@ public class ProxyDynamic {
         return Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, new InvocationHandler() {
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 //调用对象方法时返回
-                return new ClientDelegate().callRemote(clazz, method, args);
+                return RpcClientFactory.getRpcClient().callRemote(clazz, method, args);
             }
         });
     }

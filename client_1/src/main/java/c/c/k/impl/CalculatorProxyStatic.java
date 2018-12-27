@@ -1,6 +1,6 @@
 package c.c.k.impl;
 
-import c.c.k.framework.client.bio.ClientDelegate;
+import c.c.k.framework.client.ClientBIO;
 
 import java.lang.reflect.Method;
 
@@ -22,7 +22,7 @@ public class CalculatorProxyStatic {
         Object object = null;
         try {
             Method method = clazz.getMethod("add", new Class[]{int.class, int.class});
-            object = new ClientDelegate().callRemote(clazz, method, new Object[]{a, b});
+            object = new ClientBIO().callRemote(clazz, method, new Object[]{a, b});
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }

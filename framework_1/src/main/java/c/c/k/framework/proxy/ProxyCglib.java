@@ -1,6 +1,7 @@
-package c.c.k.framework.client;
+package c.c.k.framework.proxy;
 
-import c.c.k.framework.client.bio.ClientDelegate;
+import c.c.k.framework.client.ClientBIO;
+import c.c.k.framework.client.RpcClientFactory;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
@@ -32,7 +33,7 @@ public class ProxyCglib {
 //                System.out.println("before invoke...");
 //                System.out.println(o.getClass());
                 System.out.println(methodProxy.getClass());
-                Object obj = ClientDelegate.callRemote(clazz, method, objects);
+                Object obj = RpcClientFactory.getRpcClient().callRemote(clazz, method, objects);
 //                System.out.println("after invoke...");
                 return obj;
             }

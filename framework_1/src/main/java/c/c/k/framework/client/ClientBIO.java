@@ -1,10 +1,9 @@
-package c.c.k.framework.client.bio;
+package c.c.k.framework.client;
 
 import c.c.k.framework.Constants;
 import c.c.k.framework.ParamObject;
 
 import java.io.*;
-import java.lang.reflect.Method;
 import java.net.Socket;
 
 /**
@@ -14,19 +13,12 @@ import java.net.Socket;
  * @Description: java <br/>
  * @Created on 2018/12/25 chenck
  */
-public class ClientDelegate {
-    public static final Object callRemote(Class interfaceClzz, Method method, Object[] objects){
+public class ClientBIO extends IRpcClient {
+    protected Object callRemote(ParamObject paramObject){
 
         Socket socket = null;
         try {
-            socket = new Socket("localhost", Constants.SERVER_PORT);
-
-            //构造参数
-            ParamObject paramObject = new ParamObject();
-            paramObject.setInterfaceClazz(interfaceClzz);
-            paramObject.setObjects(objects);
-            paramObject.setMethodName(method.getName());
-            paramObject.setMethodTypes(method.getParameterTypes());
+            socket = new Socket(Constants.SERVER_ADDR, Constants.SERVER_PORT);
 
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectOutputStream.writeObject(paramObject);

@@ -1,15 +1,13 @@
-package c.c.k.framework.server.bio;
+package c.c.k.framework.server;
 
 import c.c.k.framework.Constants;
 import c.c.k.framework.ParamObject;
-import c.c.k.framework.server.InstanceArray;
-import c.c.k.framework.server.RpcServer;
+import c.c.k.framework.util.ServiceUtil;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -19,7 +17,7 @@ import java.net.Socket;
  * @Description: java <br/>
  * @Created on 2018/12/25 chenck
  */
-public class ServerBIO implements RpcServer {
+public class ServerBIO implements IRpcServer {
 
     public void start() throws IOException{
         ServerSocket ss = new ServerSocket(Constants.SERVER_PORT);
@@ -31,14 +29,7 @@ public class ServerBIO implements RpcServer {
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 
                 ParamObject paramObject = (ParamObject)objectInputStream.readObject();
-                String className = paramObject.getInterfaceClazz().getName();
-
-                Object service = InstanceArray.getInstanceArray().getService(className);
-
-                String methodName = paramObject.getMethodName();
-                Method method = paramObject.getInterfaceClazz().getMethod(methodName, paramObject.getMethodTypes());
-                Object returnObject = method.invoke(service, paramObject.getObjects());
-                paramObject.setReturnObject(returnObject);
+                ServiceUtil.callService(paramObject);
 
                 objectOutputStream.writeObject(paramObject);
                 socket.close();

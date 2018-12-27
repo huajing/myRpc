@@ -1,6 +1,4 @@
-package c.c.k.framework.server.nio;
-
-import c.c.k.framework.server.RpcServer;
+package c.c.k.framework.server;
 
 /**
  * @Title c.c.k.framework.server.nio
@@ -8,7 +6,7 @@ import c.c.k.framework.server.RpcServer;
  * @Description: java <br/>
  * @Created on 2018/12/25 chenck
  */
-public class ServerNIO implements RpcServer {
+public class ServerNIO implements IRpcServer {
     public void start() {
 
     }
