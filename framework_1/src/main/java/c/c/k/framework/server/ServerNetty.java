@@ -8,6 +8,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 import java.io.IOException;
 
@@ -25,6 +27,7 @@ public class ServerNetty implements IRpcServer {
             ServerBootstrap b = new ServerBootstrap();        //1
             b.group(bossGroup, workerGroup)                                    //2
                     .channel(NioServerSocketChannel.class)
+                    .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new ChannelInitializer<SocketChannel>() {//3
                         @Override
                         public void initChannel(SocketChannel ch)throws Exception {

@@ -9,6 +9,7 @@ package c.c.k.framework.client;
  */
 public class RpcClientFactory {
     public static IRpcClient getRpcClient(){
-        return new ClientBIO();
+//        return new ClientBIO();
+        return new ClientNetty();
     }
 }
