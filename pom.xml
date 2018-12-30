@@ -11,6 +11,7 @@
         <module>server_1</module>
         <module>client_1</module>
         <module>api_1</module>
+        <module>framework_1</module>
     </modules>
     <packaging>pom</packaging>
 
