@@ -1,7 +1,8 @@
-import c.c.k.CalculatorImpl;
-import c.c.k.ICalculator;
+package c.c.k;
+
 import c.c.k.framework.server.InstanceArray;
 import c.c.k.framework.server.ServerBIO;
+import c.c.k.framework.server.ServerNIO;
 import c.c.k.framework.server.ServerNetty;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,14 +32,23 @@ public class ServerTest {
         }
     }
 
-    @Test
+//    @Test
     public void testServerNetty(){
         try {
             new ServerNetty().start();
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testServerNIO(){
+//        try {
+        new ServerNIO().start();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 }
