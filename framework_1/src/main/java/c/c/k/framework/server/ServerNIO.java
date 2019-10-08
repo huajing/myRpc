@@ -30,20 +30,22 @@ public class ServerNIO implements IRpcServer{
                 while (iterator.hasNext()){
                     SelectionKey next = iterator.next();
                     if(next.isAcceptable()){
-                        System.out.println("isAcceptable");
+//                        System.out.println("isAcceptable");
                         handAccept(next);
                     }
-                    if(next.isWritable() && next.isValid()){
-                        System.out.println("isWritable");
-                        handWrite(next);
-                    }
+
                     if(next.isReadable()){
-                        System.out.println("isReadable");
+//                        System.out.println("isReadable");
                         handRead(next);
                     }
-                    if(next.isConnectable()){
-                        System.out.println("isConnectable");
+
+                    if(next.isWritable()){
+//                        System.out.println("isWritable");
+                        handWrite(next);
                     }
+                    /*if(next.isConnectable()){
+                        System.out.println("isConnectable");
+                    }*/
                     iterator.remove();
                 }
             }
@@ -67,7 +69,8 @@ public class ServerNIO implements IRpcServer{
         while (readBytes>0){
             buffer.flip();
             while (buffer.hasRemaining()){
-                System.out.print((char) buffer.get());;//data here
+                buffer.get();
+//                System.out.print((char) buffer.get());;//data here
             }
             buffer.clear();
             readBytes = channel.read(buffer);
@@ -88,7 +91,9 @@ public class ServerNIO implements IRpcServer{
 //            channel.write(buffer);
 //        }
 //        buffer.compact();
-        channel.write(ByteBuffer.wrap("abc".getBytes()));
-//        channel.close();
+        ByteBuffer byteBuffer = ByteBuffer.wrap("abc".getBytes());
+        byteBuffer.flip();
+        channel.write(byteBuffer);
+        channel.close();
     }
 }

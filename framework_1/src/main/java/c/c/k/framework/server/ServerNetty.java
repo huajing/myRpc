@@ -5,6 +5,7 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.FixedLengthFrameDecoder;
 import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
@@ -12,6 +13,7 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 
 /**
  * @Title c.c.k.framework.server.netty
@@ -27,18 +29,21 @@ public class ServerNetty implements IRpcServer {
             ServerBootstrap b = new ServerBootstrap();        //1
             b.group(bossGroup, workerGroup)                                    //2
                     .channel(NioServerSocketChannel.class)
-                    .handler(new LoggingHandler(LogLevel.INFO))
+                    .option(ChannelOption.SO_BACKLOG, 2048)
+//                    .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new ChannelInitializer<SocketChannel>() {//3
                         @Override
                         public void initChannel(SocketChannel ch)throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
-                            pipeline.addLast(new ObjectEncoder());
-                            pipeline.addLast(new ObjectDecoder(1024, ClassResolvers.weakCachingConcurrentResolver(ServerNetty.class.getClassLoader())));
+//                            pipeline.addLast(new ObjectEncoder());
+                            pipeline.addLast(new FixedLengthFrameDecoder(16));
+//                            pipeline.addLast(new ObjectDecoder(1024, ClassResolvers.weakCachingConcurrentResolver(ServerNetty.class.getClassLoader())));
                             //网络连接交给handler来处理
                             pipeline.addLast(new ServerNettyHandler());
                         }
                     });
-            ChannelFuture f = b.bind().sync();
+            ChannelFuture f = b.bind(9999).sync();
+            System.out.println("start listening ...");
             f.channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully().sync();
