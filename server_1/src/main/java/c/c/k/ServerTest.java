@@ -32,16 +32,18 @@ public class ServerTest {
         }
     }
 
-//    @Test
+    @Test
     public void testServerNetty(){
         try {
             new ServerNetty().start();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    @Test
+//    @Test
     public void testServerNIO(){
 //        try {
         new ServerNIO().start();

@@ -1,4 +1,4 @@
-package c.c.k.client.test;
+package c.c.k;
 
 import c.c.k.ICalculator;
 import c.c.k.framework.proxy.ProxyCglib;
