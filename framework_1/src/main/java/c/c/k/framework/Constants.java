@@ -7,6 +7,6 @@ package c.c.k.framework;
  * @Created on 2018/12/25 chenck
  */
 public class Constants {
-    public static final int SERVER_PORT = 1234;
+    public static final int SERVER_PORT = 9999;
     public static final String SERVER_ADDR = "localhost";
 }
